@@ -4,7 +4,7 @@
     Author     : nombre autor
 --%>
 
-<%@page import="logica.Categorias"%>
+<%@page import="logica.Proveedor"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
 <%@page import="com.google.gson.Gson"%>
@@ -38,12 +38,12 @@
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
             // creación de objeto y llamado a método guardar           
-            int id_Categoria = Integer.parseInt(request.getParameter("id_Proveedor"));
+            int id_Proveedor = Integer.parseInt(request.getParameter("id_Proveedor"));
             String nombre=request.getParameter("nombre");
-            String descripcion=request.getParameter("direccion");
+            String direccion=request.getParameter("direccion");
             String telefono=request.getParameter("telefono");
-            Categorias a= new Categorias(id_Categoria, nombre, descripcion);
-            if (a.guardarCategorias()) { 
+            Proveedor a = new Proveedor(id_Proveedor, nombre, direccion, telefono);
+            if (a.guardarProveedor()) { 
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
@@ -53,9 +53,9 @@
         //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
             //creación de objeto y llamado a método eliminar
-            int id_Categoria = Integer.parseInt(request.getParameter("id_Categoria"));        
-            Categorias a = new Categorias(id_Categoria);
-            if (a.eliminarCategorias()) {
+            int id_Proveedor = Integer.parseInt(request.getParameter("id_Proveedor"));        
+            Proveedor a = new Proveedor(id_Proveedor);
+            if (a.eliminarProveedor()) {
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
@@ -66,19 +66,20 @@
             //, uso de request.getParameter("nombre parametro")
            //creación de objeto y llamado al metodo listar
             try {
-                List<Categorias> lista = new Categorias().listarCategorias();
+                List<Proveedor> lista = new Proveedor().listarProveedores();
                 respuesta += "\"" + proceso + "\": true,\"Categorias\":" + new Gson().toJson(lista);
             } catch (Exception ex) {
                 respuesta += "\"" + proceso + "\": true,\"Categorias\":[]";
-                Logger.getLogger(Categorias.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (proceso.equals("actualizar")) {
             //creación de objeto y llamado al metodo actualizar
-            int id_Categoria =Integer.parseInt(request.getParameter("id_Categoria"));
+            int id_Proveedor = Integer.parseInt(request.getParameter("id_Proveedor"));
             String nombre=request.getParameter("nombre");
-            String descripcion=request.getParameter("descripcion");
-            Categorias a= new Categorias(id_Categoria, nombre, descripcion);
-            if (a.actualizarCategorias()) {                     
+            String direccion=request.getParameter("direccion");
+            String telefono=request.getParameter("telefono");
+            Proveedor a = new Proveedor(id_Proveedor, nombre, direccion, telefono);
+            if (a.actualizarProveedor()) {                     
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";

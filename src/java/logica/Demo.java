@@ -20,7 +20,8 @@ public class Demo {
         for (Zapato categoria : lista) {
             System.out.println(categoria);
         }
-        
+         
+       
         
 //          Zapato z = new Zapato(2, 2, 2, "Tenis Nou", "Amarillo", 33,8888);
 //          System.out.println(z.guardarZapato());
