@@ -67,9 +67,9 @@
            //creación de objeto y llamado al metodo listar
             try {
                 List<Proveedor> lista = new Proveedor().listarProveedores();
-                respuesta += "\"" + proceso + "\": true,\"Categorias\":" + new Gson().toJson(lista);
+                respuesta += "\"" + proceso + "\": true,\"Proveedores\":" + new Gson().toJson(lista);
             } catch (Exception ex) {
-                respuesta += "\"" + proceso + "\": true,\"Categorias\":[]";
+                respuesta += "\"" + proceso + "\": true,\"Proveedores\":[]";
                 Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (proceso.equals("actualizar")) {
