@@ -25,7 +25,7 @@ public class ConexionBD {
         db = "zapateria";
         url = "jdbc:mysql://" + host + "/" + db+"?serverTimezone=UTC"; 		//URL DB
         username = "root";                      			//usuario base de datos global 
-        password = "1234";
+        password = "MYSQLCentic";
         try {
             //Asignacin del Driver
             Class.forName(DB_driver);

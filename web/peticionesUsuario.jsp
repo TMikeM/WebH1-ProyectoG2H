@@ -4,8 +4,7 @@
     Author     : nombre autor
 --%>
 
-<%@page import="logica.Zapato"%>
-<%@page import="logica.Categorias"%>
+<%@page import="logica.Usuario"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
 <%@page import="com.google.gson.Gson"%>
@@ -23,7 +22,7 @@
         "eliminar",
         "actualizar",
         "listar"
-
+	
     });
 
     String proceso = "" + request.getParameter("proceso");
@@ -39,56 +38,48 @@
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
             // creación de objeto y llamado a método guardar           
-            int id_Zapato = Integer.parseInt(request.getParameter("id_Zapato"));
-            int id_Proveedor = Integer.parseInt(request.getParameter("id_Proveedor"));
-            int id_Categoria = Integer.parseInt(request.getParameter("id_Categoria"));
-            String nombreZapato = request.getParameter("nombreZapato");
-            String color = request.getParameter("color");
-            int talla = Integer.parseInt(request.getParameter("talla"));
-            int precio = Integer.parseInt(request.getParameter("precio"));
-            
-            Zapato a = new Zapato(id_Zapato, id_Categoria,id_Proveedor, nombreZapato, color, talla, precio);
-            if (a.guardarZapato()) {
+            int id_Usuario = Integer.parseInt(request.getParameter("id_Usuario"));
+            String nombre=request.getParameter("nombre");
+            String apellido=request.getParameter("apellido");
+            String contraseña=request.getParameter("contraseña");
+            Usuario a = new Usuario(id_Usuario, nombre, apellido, contraseña);
+            if (a.guardarUsuario()) { 
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
 
         } else if (proceso.equals("eliminar")) {
-            //Solicitud de parámetros enviados desde el frontned
+        //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
             //creación de objeto y llamado a método eliminar
-            int id_Zapato = Integer.parseInt(request.getParameter("id_Zapato"));
-            Zapato a = new Zapato(id_Zapato);
-            if (a.eliminarZapato()) {
+            int id_Usuario = Integer.parseInt(request.getParameter("id_Usuario"));        
+            Usuario a = new Usuario(id_Usuario);
+            if (a.eliminarUsuario()) {
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
 
         } else if (proceso.equals("listar")) {
-            //Solicitud de parámetros enviados desde el frontned
+        //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
-            //creación de objeto y llamado al metodo listar
+           //creación de objeto y llamado al metodo listar
             try {
-                List<Zapato> lista = new Zapato().listarZapatos();
-                respuesta += "\"" + proceso + "\": true,\"Zapatos\":" + new Gson().toJson(lista);
+                List<Usuario> lista = new Usuario().listarUsuarios();
+                respuesta += "\"" + proceso + "\": true,\"Usuarioes\":" + new Gson().toJson(lista);
             } catch (Exception ex) {
-                respuesta += "\"" + proceso + "\": true,\"Zapatos\":[]";
-                Logger.getLogger(Categorias.class.getName()).log(Level.SEVERE, null, ex);
+                respuesta += "\"" + proceso + "\": true,\"Usuarioes\":[]";
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (proceso.equals("actualizar")) {
             //creación de objeto y llamado al metodo actualizar
-            int id_Zapato = Integer.parseInt(request.getParameter("id_Zapato"));
-            int id_Proveedor = Integer.parseInt(request.getParameter("id_Proveedor"));
-            int id_Categoria = Integer.parseInt(request.getParameter("id_Categoria"));
-            String nombreZapato = request.getParameter("nombreZapato");
-            String color = request.getParameter("color");
-            int talla = Integer.parseInt(request.getParameter("talla"));
-            int precio = Integer.parseInt(request.getParameter("precio"));
-            
-            Zapato a = new Zapato(id_Zapato, id_Categoria,id_Proveedor, nombreZapato, color, talla, precio);
-            if (a.actualizarZapato()) {
+            int id_Usuario = Integer.parseInt(request.getParameter("id_Usuario"));
+            String nombre=request.getParameter("nombre");
+            String apellido=request.getParameter("apellido");
+            String contraseña=request.getParameter("contraseña");
+            Usuario a = new Usuario(id_Usuario, nombre, apellido, contraseña);
+            if (a.actualizarUsuario()) {                     
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
@@ -104,7 +95,7 @@
         respuesta += "\"error\": \"INVALID\",";
         respuesta += "\"errorMsg\": \"Lo sentimos, los datos que ha enviado,"
                 + " son inválidos. Corrijalos y vuelva a intentar por favor.\"";
-    }
+    }    
     // Responder como objeto JSON codificación ISO 8859-1.
     respuesta += "}";
     response.setContentType("application/json;charset=iso-8859-1");
