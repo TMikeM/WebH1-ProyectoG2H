@@ -1,18 +1,13 @@
-<%-- 
-    Document   : usuario
-    Created on : 1/09/2022, 12:29:25 p. m.
-    Author     : CENTIC
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
 <html>
 <head>
-    <link rel="stylesheet" href="/css/usuarioRegisterD.css" type="text/css">
+    <link rel="stylesheet" href="css/usuarioRegistro.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="https://kit.fontawesome.com/3681d38b22.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <title>Login Jogo Bonito</title>
+    <title>Registro Jogo Bonito</title>
 </head>
 <body>
     <div class="container">

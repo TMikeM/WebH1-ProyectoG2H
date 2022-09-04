@@ -1,8 +1,3 @@
-<%-- 
-    Document   : libros
-    Created on : 22/07/2022, 1:01:18 p. m.
-    Author     : CENTIC
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +5,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/estilosZapatos.css" type="text/css">
+        <link rel="stylesheet" href="css/estilosZapatos.css"">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-        <title>Zapatosa Calite</title>
+        <title>Zapatosa Jogo Bonito</title>
     </head>
     <body>
         <div class="container-fluid" style="background: background" ng-app="demoB1" ng-controller="b1Controller as b1" >
