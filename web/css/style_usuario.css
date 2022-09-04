@@ -23,7 +23,7 @@ body{
     width: 500px;
     height: auto;
     background-color: white;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2   );
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2 );
 }
 
 .register, .login{
@@ -75,10 +75,5 @@ body{
     .register, .login{
         flex:none;
     }
-    .register::after{
-        top: unset;
-        bottom: -25px;
-        left: 50px;
-        transform: translateX(180px) rotate(90deg);
-    }
+
 }
