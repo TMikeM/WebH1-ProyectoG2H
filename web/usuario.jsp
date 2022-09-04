@@ -8,8 +8,8 @@
 <!DOCTYPE html> 
 <html>
 <head>
+    <link rel="stylesheet" href="/css/usuarioRegisterD.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="/css/usuarioRegisterD.css.css">
     <script src="https://kit.fontawesome.com/3681d38b22.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <title>Login Jogo Bonito</title>
