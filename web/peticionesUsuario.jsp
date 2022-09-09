@@ -15,18 +15,16 @@
 
 <%    // Iniciando respuesta JSON.
     String respuesta = "{";
-
     //Lista de procesos o tareas a realizar 
     List<String> tareas = Arrays.asList(new String[]{
         "guardar",
         "eliminar",
         "actualizar",
-        "listar"
+        "listar",
+        "iniciarsesion"
 	
     });
-
     String proceso = "" + request.getParameter("proceso");
-
     // Validación de parámetros utilizados en todos los procesos.
     if (tareas.contains(proceso)) {
         respuesta += "\"ok\": true,";
@@ -34,21 +32,19 @@
         // -----------------------------------INICIO PROCESOS----------------------------------- //
         // ------------------------------------------------------------------------------------- //
         if (proceso.equals("guardar")) {
-
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
             // creación de objeto y llamado a método guardar           
-            int id_Usuario = Integer.parseInt(request.getParameter("id_Usuario"));
+            //int id_Usuario = Integer.parseInt(request.getParameter("id_Usuario"));
             String nombre=request.getParameter("nombre");
             String apellido=request.getParameter("apellido");
-            String contraseña=request.getParameter("contraseña");
-            Usuario a = new Usuario(id_Usuario, nombre, apellido, contraseña);
+            String contrasena=request.getParameter("contrasena");
+            Usuario a = new Usuario(nombre, apellido, contrasena);
             if (a.guardarUsuario()) { 
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
-
         } else if (proceso.equals("eliminar")) {
         //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
@@ -60,16 +56,15 @@
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
-
         } else if (proceso.equals("listar")) {
         //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
            //creación de objeto y llamado al metodo listar
             try {
                 List<Usuario> lista = new Usuario().listarUsuarios();
-                respuesta += "\"" + proceso + "\": true,\"Usuarioes\":" + new Gson().toJson(lista);
+                respuesta += "\"" + proceso + "\": true,\"Usuarios\":" + new Gson().toJson(lista);
             } catch (Exception ex) {
-                respuesta += "\"" + proceso + "\": true,\"Usuarioes\":[]";
+                respuesta += "\"" + proceso + "\": true,\"Usuarios\":[]";
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (proceso.equals("actualizar")) {
@@ -77,15 +72,30 @@
             int id_Usuario = Integer.parseInt(request.getParameter("id_Usuario"));
             String nombre=request.getParameter("nombre");
             String apellido=request.getParameter("apellido");
-            String contraseña=request.getParameter("contraseña");
-            Usuario a = new Usuario(id_Usuario, nombre, apellido, contraseña);
+            String contrasena=request.getParameter("contrasena");
+            Usuario a = new Usuario(id_Usuario, nombre, apellido, contrasena);
             if (a.actualizarUsuario()) {                     
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
-        }
+        } 
+        else if(proceso.equals("iniciarsesion")){
+        try {
+                Usuario b = new Usuario();
+                String nombre=request.getParameter("nombre");
+                String apellido=request.getParameter("apellido");
+                String contrasena=request.getParameter("contrasena");
+                Usuario a = new Usuario(nombre, apellido, contrasena);
+                b = a.getUsuario();
+                respuesta += "\"" + proceso + "\": true,\"Usuarios\":" + new Gson().toJson(b);
 
+            } catch (Exception ex) {
+                respuesta += "\"" + proceso + "\": true,\"Usuarios\":[]";
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+ 
         // ------------------------------------------------------------------------------------- //
         // -----------------------------------FIN PROCESOS-------------------------------------- //
         // ------------------------------------------------------------------------------------- //
@@ -101,4 +111,3 @@
     response.setContentType("application/json;charset=iso-8859-1");
     out.print(respuesta);
 %>
-

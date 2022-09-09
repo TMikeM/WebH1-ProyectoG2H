@@ -17,20 +17,29 @@ public class Usuario implements interfaceUsuario{
     private int id_Usuario;
     private String nombre;
     private String apellido;
-    private String contraseña;
+    private String contrasena;
 
     public Usuario() {
     }
-
     public Usuario(int id_Usuario) {
         this.id_Usuario = id_Usuario;
     }
 
-    public Usuario(int idUsuario, String nombre, String apellido, String contraseña) {
-        this.id_Usuario = idUsuario;
+    public void setId_Usuario(int id_Usuario) {
+        this.id_Usuario = id_Usuario;
+    }
+
+    public Usuario(String nombre, String apellido, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
+    }
+
+    public Usuario(int id_Usuario, String nombre, String apellido, String contrasena) {
+        this.id_Usuario = id_Usuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.contrasena = contrasena;
     }
 
     public int getIdUsuario() {
@@ -57,17 +66,17 @@ public class Usuario implements interfaceUsuario{
         this.apellido = apellido;
     }
 
-    public String getcontraseña() {
-        return contraseña;
+    public String getcontrasena() {
+        return contrasena;
     }
 
-    public void setcontraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + id_Usuario + ", nombre=" + nombre + ", apellido=" + apellido + ", contraseña=" + contraseña + '}';
+        return "Usuario{" + "idUsuario=" + id_Usuario + ", nombre=" + nombre + ", apellido=" + apellido + ", contrasena=" + contrasena + '}';
     }
 
     @Override
@@ -76,8 +85,8 @@ public class Usuario implements interfaceUsuario{
         boolean exito = false;
         ConexionBD conexion = new ConexionBD();
         String sql = "INSERT INTO zapateria.usuario\n" +
-                     "(id_Usuario, nombre, apellido, contraseña)\n" +
-                     "VALUES('"+this.id_Usuario+"', '"+this.nombre+"', '"+this.apellido+"', '"+this.contraseña+"');";
+                     "(nombre, apellido, contrasena)\n" +
+                     "VALUES('"+this.nombre+"', '"+this.apellido+"', '"+this.contrasena+"');";
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.insertarBD(sql)) {
                 conexion.commitBD();
@@ -123,7 +132,7 @@ public class Usuario implements interfaceUsuario{
 
         boolean exito = false;
         String sql = "UPDATE zapateria.usuario\n" +
-                     "SET nombre='"+this.nombre+"', apellido='"+this.apellido+"', contraseña='"+this.contraseña+"'\n" +
+                     "SET nombre='"+this.nombre+"', apellido='"+this.apellido+"', contrasena='"+this.contrasena+"'\n" +
                      "WHERE id_Usuario='"+this.id_Usuario+"';";
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
@@ -146,7 +155,7 @@ public class Usuario implements interfaceUsuario{
     @Override
     public List<Usuario> listarUsuarios() {
 
-        List<Usuario> Usuarioes = new ArrayList<>();
+        List<Usuario> Usuarios = new ArrayList<>();
         String sql = "SELECT * FROM usuario;";
         ConexionBD conexion = new ConexionBD();
 
@@ -156,11 +165,11 @@ public class Usuario implements interfaceUsuario{
             Usuario p;
             while (rs.next()) {
                 p = new Usuario();
-                p.setIdUsuario(rs.getInt("id_Usuario"));
+                p.setId_Usuario(rs.getInt("id_Usuario"));
                 p.setNombre(rs.getString("nombre"));
                 p.setapellido(rs.getString("apellido"));
-                p.setcontraseña(rs.getString("contraseña"));
-                Usuarioes.add(p);
+                p.setcontrasena(rs.getString("contrasena"));
+                Usuarios.add(p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -168,7 +177,7 @@ public class Usuario implements interfaceUsuario{
             conexion.cerrarConexion();
         }
 
-        return Usuarioes;
+        return Usuarios;
 
 
     }
@@ -176,18 +185,18 @@ public class Usuario implements interfaceUsuario{
     @Override
     public Usuario getUsuario() {
 
-        String sql = "SELECT * FROM Usuarioes WHERE id_Usuario='"+this.id_Usuario+"';";
+        String sql = "SELECT * FROM Usuarioes WHERE id_Usuario='"+this.nombre+" and apellido="+this.apellido+" and contrasena="+this.contrasena+"';";
         ConexionBD conexion = new ConexionBD();
 
         ResultSet rs = conexion.consultarBD(sql);
 
         try {
-            Usuario p;
+//            Usuario p;
             if (rs.next()) {
                 this.id_Usuario=rs.getInt("id_Usuario");
                 this.nombre=(rs.getString("nombre"));
                 this.apellido=(rs.getString("apellido"));
-                this.contraseña=(rs.getString("contraseña"));
+                this.contrasena=(rs.getString("contrasena"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
