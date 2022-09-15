@@ -60,10 +60,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3"><button type="button" class="btn btn-success" ng-click="b1.guardar()">Guardar</button></div>
                     <div class="col-3"><button type="button" class="btn btn-primary" ng-click="b1.listar()">Consultar</button></div>
-                    <div class="col-3"><button type="button" class="btn btn-warning" ng-click="b1.actualizar()">Actualizar</button></div>
-                    <div class="col-3"><button type="button" class="btn btn-danger" ng-click="b1.eliminar()">Eliminar</button></div>
                 </div>
 
             </div>
@@ -95,7 +92,7 @@
                                 <td>{{zap.id_Proveedor}}</td>
                                 <td>{{zap.id_Categoria}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info" ng-click="b1.editar(zap.isbn)">Editar</button>
+                                    imagen creo
                                 </td>
                             </tr>
 
@@ -148,114 +145,8 @@
                         b1.Zapatos = res.data.Zapatos;
                     });
                 };
-
-
-                b1.guardar = function () {
-                    var parametros = {
-                        proceso: 'guardar',
-                        id_Zapato: b1.id_Zapato,
-                        nombreZapato: b1.nombreZapato,
-                        color: b1.color,
-                        talla: b1.talla,
-                        precio: b1.precio,
-                        id_Proveedor: b1.id_Proveedor,
-                        id_Categoria: b1.id_Categoria
-                    };
-                    $http({
-                        method: 'POST',
-                        url: 'peticionesZapato.jsp',
-                        params: parametros
-                    }).then(function (res) {
-                        if (res.data.ok === true) {
-                            if (res.data.guardar === true) {
-                                alert('Guardó');
-                            } else {
-                                alert('No Guardó');
-                            }
-
-                        } else {
-                            alert(res.data.errorMsg);
-                        }
-                    });
-
-                };
-                b1.actualizar = function () {
-                    var parametros = {
-                        proceso: 'actualizar',
-                        id_Zapato: b1.id_Zapato,
-                        nombreZapato: b1.nombreZapato,
-                        color: b1.color,
-                        talla: b1.talla,
-                        precio: b1.precio,
-                        id_Proveedor: b1.id_Proveedor,
-                        id_Categoria: b1.id_Categoria
-                    };
-                    $http({
-                        method: 'POST',
-                        url: 'peticionesZapato.jsp',
-                        params: parametros
-                    }).then(function (res) {
-                        if (res.data.ok === true) {
-                            if (res.data.actualizar === true) {
-                                alert('Actualizó');
-                            } else {
-                                alert('No actualizo');
-                            }
-
-                        } else {
-                            alert(res.data.errorMsg);
-                        }
-                    });
-                };
-
-                b1.eliminar = function () {
-                    var parametros = {
-                        proceso: 'eliminar',
-                        id_Zapato: b1.id_Zapato
-
-                    };
-                    $http({
-                        method: 'POST',
-                        url: 'peticionesZapato.jsp',
-                        params: parametros
-                    }).then(function (res) {
-                        if (res.data.ok === true) {
-                            if (res.data.eliminar === true) {
-                                alert('Elimino');
-                            } else {
-                                alert('No elimino');
-                            }
-
-                        } else {
-                            alert(res.data.errorMsg);
-                        }
-                    });
-                };
-//
-//                b1.editar = function (id) {
-//                    var parametros = {
-//                        proceso: 'listarPorId',
-//                        isbn: id
-//                    };
-//                    $http({
-//                        method: 'POST',
-//                        url: 'peticionesLibro.jsp',
-//                        params: parametros
-//
-//                    }).then(function (res) {    
-//
-//                        b1.isbn = res.data.Libro.isbn;
-//                        b1.nombre = res.data.Libro.nombre;
-//                        b1.numeroDePaginas = res.data.Libro.numeroDePaginas;
-//                        b1.annio = res.data.Libro.annio;
-//                        b1.idCategoria = res.data.Libro.idCategoria.toString();
-//                        b1.codigoAutor = res.data.Libro.codigoAutor;
-//
-//                    });
-//                };
-
-            }
-            ;
+            
+            };
 
         </script>
     </body>

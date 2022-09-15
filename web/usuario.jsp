@@ -131,10 +131,10 @@
                     }).then(function (res) {
                         if(res.data.ok === true){
                         if (res.data.iniciarsesion === true) {
-                            if(res.data.Usuario.nombre === "Yeferson"){
+                            if((res.data.Usuario.contrasena === ("1234254")&& res.data.Usuario.nombre === ("Michael")&& res.data.Usuario.apellido === ("Maldonado"))||(res.data.Usuario.contrasena === ("123124")&& res.data.Usuario.nombre === ("Juan")&& res.data.Usuario.apellido === ("Claro"))||(res.data.Usuario.contrasena === ("1234")&& res.data.Usuario.nombre === ("Yeferson")&& res.data.Usuario.apellido === ("Valencia"))){
                                     window.location.href = "http://localhost:8080/Zapatos/zapatos.jsp";
                                  }else{
-                                     alert('Otro usuario');
+                                    window.location.href = "http://localhost:8080/Zapatos/zapatos_login.jsp";
                                  }
                         } else {
                             alert('Sesion Incorrecta');
