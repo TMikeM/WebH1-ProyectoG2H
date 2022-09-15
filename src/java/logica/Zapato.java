@@ -33,7 +33,7 @@ public class Zapato implements interfaceZapato{
         this.id_Zapato = id_Zapato;
     }
 
-    public Zapato(int id_Zapato, int id_Proveedor, int id_Categoria, String nombreZapato, String color, int talla, int precio, String img, Categorias categoria, Proveedor proveedor) {
+    public Zapato(int id_Zapato, int id_Proveedor, int id_Categoria, String nombreZapato, String color, int talla, int precio, String img) {
         this.id_Zapato = id_Zapato;
         this.id_Proveedor = id_Proveedor;
         this.id_Categoria = id_Categoria;
@@ -42,19 +42,17 @@ public class Zapato implements interfaceZapato{
         this.talla = talla;
         this.precio = precio;
         this.img = img;
-        this.categoria = categoria;
-        this.proveedor = proveedor;
     }
 
-    public Zapato(int id_Zapato, int id_Proveedor, int id_Categoria, String nombreZapato, String color, int talla, int precio) {
-        this.id_Zapato = id_Zapato;
-        this.id_Proveedor = id_Proveedor;
-        this.id_Categoria = id_Categoria;
-        this.nombreZapato = nombreZapato;
-        this.color = color;
-        this.talla = talla;
-        this.precio = precio;
-    }
+//    public Zapato(int id_Zapato, int id_Proveedor, int id_Categoria, String nombreZapato, String color, int talla, int precio) {
+//        this.id_Zapato = id_Zapato;
+//        this.id_Proveedor = id_Proveedor;
+//        this.id_Categoria = id_Categoria;
+//        this.nombreZapato = nombreZapato;
+//        this.color = color;
+//        this.talla = talla;
+//        this.precio = precio;
+//    }
 
     public int getId_Zapato() {
         return id_Zapato;
@@ -149,9 +147,9 @@ public class Zapato implements interfaceZapato{
         ConexionBD conexion = new ConexionBD();
         
         String sql = "INSERT INTO Zapateria.zapatos\n" +
-        "(id_Zapato, id_Categoria,id_Proveedor, nombre_Zapato, color, talla, precio)\n" +
+        "(id_Zapato, id_Categoria,id_Proveedor, nombre_Zapato, color, talla, precio,img)\n" +
         "values('"+this.id_Zapato+"','"+this.id_Categoria+"','"+this.id_Proveedor+"',"
-                + "'"+this.nombreZapato+"', '"+this.color+"',"+this.talla+","+this.precio+");";
+                + "'"+this.nombreZapato+"', '"+this.color+"',"+this.talla+","+this.precio+",'"+this.img+"');";
         
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.insertarBD(sql)) {

@@ -46,8 +46,9 @@
             String color = request.getParameter("color");
             int talla = Integer.parseInt(request.getParameter("talla"));
             int precio = Integer.parseInt(request.getParameter("precio"));
+            String img = request.getParameter("img");
             
-            Zapato a = new Zapato(id_Zapato, id_Categoria,id_Proveedor, nombreZapato, color, talla, precio);
+            Zapato a = new Zapato(id_Zapato, id_Categoria,id_Proveedor, nombreZapato, color, talla, precio,img);
             if (a.guardarZapato()) {
                 respuesta += "\"" + proceso + "\": true";
             } else {
@@ -86,8 +87,9 @@
             String color = request.getParameter("color");
             int talla = Integer.parseInt(request.getParameter("talla"));
             int precio = Integer.parseInt(request.getParameter("precio"));
+            String img = request.getParameter("img");
             
-            Zapato a = new Zapato(id_Zapato, id_Categoria,id_Proveedor, nombreZapato, color, talla, precio);
+            Zapato a = new Zapato(id_Zapato, id_Categoria,id_Proveedor, nombreZapato, color, talla, precio,img);
             if (a.actualizarZapato()) {
                 respuesta += "\"" + proceso + "\": true";
             } else {

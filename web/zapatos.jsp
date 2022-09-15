@@ -26,14 +26,18 @@
                         <input type="text" class="form-control input-margin" placeholder="Nombre del Zapato" ng-model="b1.nombreZapato">
                     </div>
                 </div>
-
-                <div class="excepcion">
+                
+                <div class="row">
+                <div class="col-6">
                     <label class="color-text">Color</label>
                     <input type="text" class="form-control input-margin color" placeholder="Color del Zapato" ng-model="b1.color">
-
                 </div>
-
-
+                <div class="col-6">
+                        <label>Imagen</label>
+                        <input type="text" class="form-control input-margin" placeholder="Url del Zapato" ng-model="b1.img">
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-6 "><label>Talla</label>
                         <input type="text" class="form-control input-margin" placeholder="Talla" ng-model="b1.talla" >
@@ -159,7 +163,8 @@
                         talla: b1.talla,
                         precio: b1.precio,
                         id_Proveedor: b1.id_Proveedor,
-                        id_Categoria: b1.id_Categoria
+                        id_Categoria: b1.id_Categoria,
+                        img: b1.img
                     };
                     $http({
                         method: 'POST',
@@ -188,7 +193,8 @@
                         talla: b1.talla,
                         precio: b1.precio,
                         id_Proveedor: b1.id_Proveedor,
-                        id_Categoria: b1.id_Categoria
+                        id_Categoria: b1.id_Categoria,
+                        img: b1.img
                     };
                     $http({
                         method: 'POST',
