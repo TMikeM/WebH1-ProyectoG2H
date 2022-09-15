@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3"><button type="button" class="btn btn-primary" ng-click="b1.listar()">Consultar</button></div>
+                    <div class="col-3"><button type="button" id="btn-sesion" class="submit" ng-click="b1.listar()">CONSULTAR</button></div>
                 </div>
 
             </div>
