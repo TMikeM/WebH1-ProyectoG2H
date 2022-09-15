@@ -12,16 +12,16 @@
         <title>Zapatosa Jogo Bonito</title>
     </head>
     <body>
-        <div class="container-fluid" style="background: background" ng-app="demoB1" ng-controller="b1Controller as b1" >
+        <div class="container-login" ng-app="demoB1" ng-controller="b1Controller as b1">
 
             <div class="col-6">
                 <h3>Zapateria Jogo Bonito</h3>
                 <div class="row">
-                    <div class="col-6 "> 
+                    <div class="col-6 ">
                         <label>N° Zapato</label>
                         <input type="text" class="form-control input-margin" placeholder="Numero de Zapato" ng-model="b1.id_Zapato">
                     </div>
-                    <div class="col-6 "> 
+                    <div class="col-6 ">
                         <label>Zapato</label>
                         <input type="text" class="form-control input-margin" placeholder="Nombre del Zapato" ng-model="b1.nombreZapato">
                     </div>
@@ -47,14 +47,14 @@
                     <div class="col-6">
                         <label>Proveedor</label>
                         <!--<input type="text" class="form-control" placeholder="Codigo autor" ng-model="b1.codigoAutor">-->
-                        <select class="form-control input-margin" ng-model="b1.id_Proveedor"> 
+                        <select class="form-control input-margin" ng-model="b1.id_Proveedor">
                             <option ng-repeat="p in b1.Proveedores" value="{{p.id_Proveedor}}">{{p.nombre}}</option>
                         </select>
                     </div>
                     <div class="col-6">
                         <label>Categoria</label>
                         <!--<input type="text" class="form-control" placeholder="id categoria" ng-model="b1.idCategoria">-->
-                        <select class="form-control input-margin" ng-model="b1.id_Categoria"> 
+                        <select class="form-control input-margin" ng-model="b1.id_Categoria">
                             <option ng-repeat="c in b1.Categorias" value="{{c.id_Categoria}}">{{c.nombre}}</option>
                         </select>
                     </div>
@@ -77,7 +77,7 @@
                                 <th scope="col">Precio</th>
                                 <th scope="col">Proveedor</th>
                                 <th scope="col">Categoria</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col">Foto</th>
 
 
                             </tr>
@@ -92,7 +92,7 @@
                                 <td>{{zap.id_Proveedor}}</td>
                                 <td>{{zap.id_Categoria}}</td>
                                 <td>
-                                    imagen creo
+                                    <img src="{{zap.img}}" alt="zapato1" width="100px" height="100px" >
                                 </td>
                             </tr>
 
@@ -145,7 +145,7 @@
                         b1.Zapatos = res.data.Zapatos;
                     });
                 };
-            
+
             };
 
         </script>

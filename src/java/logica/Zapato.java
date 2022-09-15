@@ -21,6 +21,7 @@ public class Zapato implements interfaceZapato{
     private String color;
     private int talla;
     private int precio;
+    private String img;
     private Categorias categoria;
     private Proveedor proveedor;
    
@@ -30,6 +31,19 @@ public class Zapato implements interfaceZapato{
 
     public Zapato(int id_Zapato) {
         this.id_Zapato = id_Zapato;
+    }
+
+    public Zapato(int id_Zapato, int id_Proveedor, int id_Categoria, String nombreZapato, String color, int talla, int precio, String img, Categorias categoria, Proveedor proveedor) {
+        this.id_Zapato = id_Zapato;
+        this.id_Proveedor = id_Proveedor;
+        this.id_Categoria = id_Categoria;
+        this.nombreZapato = nombreZapato;
+        this.color = color;
+        this.talla = talla;
+        this.precio = precio;
+        this.img = img;
+        this.categoria = categoria;
+        this.proveedor = proveedor;
     }
 
     public Zapato(int id_Zapato, int id_Proveedor, int id_Categoria, String nombreZapato, String color, int talla, int precio) {
@@ -98,6 +112,14 @@ public class Zapato implements interfaceZapato{
         this.precio = precio;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public Categorias getCategoria() {
         return categoria;
     }
@@ -116,8 +138,9 @@ public class Zapato implements interfaceZapato{
 
     @Override
     public String toString() {
-        return "Zapato{" + "idZapato=" + id_Zapato + ", nombreZapato=" + nombreZapato + ", color=" + color + ", talla=" + talla + ", precio=" + precio + '}';
+        return "Zapato{" + "id_Zapato=" + id_Zapato + ", id_Proveedor=" + id_Proveedor + ", id_Categoria=" + id_Categoria + ", nombreZapato=" + nombreZapato + ", color=" + color + ", talla=" + talla + ", precio=" + precio + ", img=" + img + ", categoria=" + categoria + ", proveedor=" + proveedor + '}';
     }
+
 
     @Override
     public boolean guardarZapato() {
@@ -218,6 +241,7 @@ public class Zapato implements interfaceZapato{
                 z.setColor(rs.getString("color"));
                 z.setTalla(rs.getInt("talla"));
                 z.setPrecio(rs.getInt("precio"));
+                z.setImg(rs.getString("img"));
                 
                 Categorias c = new Categorias(z.getId_Categoria());
                 z.setCategoria(c.getCategorias());
