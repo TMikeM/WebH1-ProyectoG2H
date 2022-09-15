@@ -82,15 +82,20 @@
         } 
         else if(proceso.equals("iniciarsesion")){
         try {
-                Usuario b = new Usuario();
                 String nombre=request.getParameter("nombre");
                 String apellido=request.getParameter("apellido");
                 String contrasena=request.getParameter("contrasena");
                 Usuario a = new Usuario(nombre, apellido, contrasena);
-                b = a.getUsuario();
-                respuesta += "\"" + proceso + "\": true,\"Usuarios\":" + new Gson().toJson(b);
+                Usuario b = a.getUsuario();
+                if(b == null){
+                    respuesta += "\"" + proceso + "\": false";
+                }
+                else{
+                         respuesta += "\"" + proceso + "\": true,\"Usuario\":" + new Gson().toJson(b);
+                }
 
             } catch (Exception ex) {
+                System.out.println(ex.getMessage());
                 respuesta += "\"" + proceso + "\": true,\"Usuarios\":[]";
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }

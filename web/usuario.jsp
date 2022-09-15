@@ -41,10 +41,10 @@
             <dialog class="inicio" id="inicio">
                 <h2>Iniciar Sesion</h2>
                 <form action="">
-                    <input type="text" placeholder="Nombre" class="nombre">
-                    <input type="text" placeholder="Apellido" class="apellido">
-                    <input type="password" placeholder="Contraseña" class="pass">
-                    <button type="button" class="submit" ng-click="b1.entrar()">Iniciar sesion </button>
+                    <input type="text" placeholder="Nombre" class="nombre" ng-model="b1.nombre2">
+                    <input type="text" placeholder="Apellido" class="apellido" ng-model="b1.apellido2">
+                    <input type="password" placeholder="Contraseña" class="pass" ng-model="b1.contrasena2">
+                    <button type="button" id="btn-sesion" class="submit" ng-click="b1.entrar()">Iniciar sesion </button>
                 </form>
             </dialog>
 
@@ -65,6 +65,7 @@
             btnAbrirRegistrar.addEventListener("click", () => {
                 registro.showModal();
             });
+            
         </script>
 
         <script>
@@ -99,7 +100,7 @@
                             } else {
                                 alert(res.data.errorMsg);
                             }
-                        }else{
+                        } else {
                             alert('Contraseñas Distintas');
                         }
                     });
@@ -114,14 +115,14 @@
                         document.getElementById("id2").style.background = "red";
                     }
                 };
-                
+
                 b1.entrar = function () {
 
                     var parametros = {
                         proceso: 'iniciarsesion',
-                        nombre: b1.nombre,
-                        apellido: b1.apellido,
-                        contrasena: b1.contrasena
+                        nombre: b1.nombre2,
+                        apellido: b1.apellido2,
+                        contrasena: b1.contrasena2
                     };
                     $http({
                         method: 'POST',
@@ -129,18 +130,18 @@
                         params: parametros
                     }).then(function (res) {
                         if(res.data.ok === true){
-                            if (parametros.nombre !== res.data.nombre) {
-                                alert('Nombre de usuario invalido');
-                        }else if(parametros.apellido !== res.data.apellido){
-                            alert('Apellido Invalido');
-                        }else if(parametros.contrasena !== res.data.contrasena){
-                            alert('Contraña incorrecta');
-                        }else{
-                            alert('Sesion correcta');
+                        if (res.data.iniciarsesion === true) {
+                            if(res.data.Usuario.nombre === "Yeferson"){
+                                    window.location.href = "http://localhost:8080/Zapatos/zapatos.jsp";
+                                 }else{
+                                     alert('Otro usuario');
+                                 }
+                        } else {
+                            alert('Sesion Incorrecta');
+                        }}else{
+                                alert(res.data.errorMsg);
+
                         }
-                    }else {
-                        alert('Caracteres no admitidos');
-                    }
                     });
                 }
                 ;

@@ -12,8 +12,8 @@ import persistencia.ConexionBD;
  *
  * @author Lizeth
  */
-public class Usuario implements interfaceUsuario{
-    
+public class Usuario implements interfaceUsuario {
+
     private int id_Usuario;
     private String nombre;
     private String apellido;
@@ -21,6 +21,7 @@ public class Usuario implements interfaceUsuario{
 
     public Usuario() {
     }
+
     public Usuario(int id_Usuario) {
         this.id_Usuario = id_Usuario;
     }
@@ -84,9 +85,9 @@ public class Usuario implements interfaceUsuario{
 
         boolean exito = false;
         ConexionBD conexion = new ConexionBD();
-        String sql = "INSERT INTO zapateria.usuario\n" +
-                     "(nombre, apellido, contrasena)\n" +
-                     "VALUES('"+this.nombre+"', '"+this.apellido+"', '"+this.contrasena+"');";
+        String sql = "INSERT INTO zapateria.usuario\n"
+                + "(nombre, apellido, contrasena)\n"
+                + "VALUES('" + this.nombre + "', '" + this.apellido + "', '" + this.contrasena + "');";
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.insertarBD(sql)) {
                 conexion.commitBD();
@@ -106,9 +107,9 @@ public class Usuario implements interfaceUsuario{
     @Override
     public boolean eliminarUsuario() {
 
-                boolean exito = false;
-        String sql = "DELETE FROM zapateria.usuario\n" +
-                     "WHERE id_Usuario='"+this.id_Usuario+"';";
+        boolean exito = false;
+        String sql = "DELETE FROM zapateria.usuario\n"
+                + "WHERE id_Usuario='" + this.id_Usuario + "';";
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.actualizarBD(sql)) {
@@ -131,9 +132,9 @@ public class Usuario implements interfaceUsuario{
     public boolean actualizarUsuario() {
 
         boolean exito = false;
-        String sql = "UPDATE zapateria.usuario\n" +
-                     "SET nombre='"+this.nombre+"', apellido='"+this.apellido+"', contrasena='"+this.contrasena+"'\n" +
-                     "WHERE id_Usuario='"+this.id_Usuario+"';";
+        String sql = "UPDATE zapateria.usuario\n"
+                + "SET nombre='" + this.nombre + "', apellido='" + this.apellido + "', contrasena='" + this.contrasena + "'\n"
+                + "WHERE id_Usuario='" + this.id_Usuario + "';";
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.actualizarBD(sql)) {
@@ -179,33 +180,32 @@ public class Usuario implements interfaceUsuario{
 
         return Usuarios;
 
-
     }
 
     @Override
     public Usuario getUsuario() {
 
-        String sql = "SELECT * FROM Usuarioes WHERE id_Usuario='"+this.nombre+" and apellido="+this.apellido+" and contrasena="+this.contrasena+"';";
+        String sql = "SELECT * FROM usuario WHERE nombre='" + this.nombre + "' and apellido='" + this.apellido + "' and contrasena='" + this.contrasena + "';";
         ConexionBD conexion = new ConexionBD();
 
         ResultSet rs = conexion.consultarBD(sql);
-
+        Usuario p = null;
         try {
-//            Usuario p;
             if (rs.next()) {
-                this.id_Usuario=rs.getInt("id_Usuario");
-                this.nombre=(rs.getString("nombre"));
-                this.apellido=(rs.getString("apellido"));
-                this.contrasena=(rs.getString("contrasena"));
+                this.id_Usuario = rs.getInt("id_Usuario");
+                this.nombre = (rs.getString("nombre"));
+                this.apellido = (rs.getString("apellido"));
+                // this.contrasena=(rs.getString("contrasena"));
+                p = this;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         } finally {
             conexion.cerrarConexion();
         }
-        return this;
-        
+        return p;
     }
-    
-    
+
 }
